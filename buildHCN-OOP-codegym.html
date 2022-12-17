@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<label for="length">Chiều dài của HCN :</label><input type="text" id="length">
+<label for="width">Chiều rộng của HCN :</label><input type="text" id="width">
+<br>
+<button onclick="draw()">Draw</button>
+<br>
+  <canvas id="myCanvas" style="border:1px solid red" width="100%" height="100%"></canvas>
+<br>
+</body>
+<script>
+    class Rectangle{
+        constructor(length,width) {
+            this.length = length;
+            this.width = width;
+        }
+        getLength(){
+            return this.length;
+        }
+        getWidth(){
+            return this.width;
+        }
+
+        // setWidth() {
+        //        this.width = width;
+        //   }
+        //
+        // setLength(){
+        //        this.length = length;
+        // }
+        showRectangularArea (){
+            return  this.length * this.width
+        }
+        showRectanglePerimeter(){
+            return (this.length + this.width) * 2;
+        }
+
+        drawRectangle() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, this.length, this.width);
+        }
+
+    }
+
+
+    function draw() {
+        let length = document.getElementById("length").value
+        let width = document.getElementById("width").value
+        let newRect = new Rectangle(width, length)
+        newRect.drawRectangle()
+    }
+
+
+    let length = +prompt("Nhập vào ");
+    let width = +prompt("Nhập vào ");
+    let rectangle =  new Rectangle(length,width);
+    document.write(" Chiều dài HCN là :" + rectangle.length+ "<br>" + " Chiều rộng HCN là :" + rectangle.width+ "<br>");
+    document.write("Diện tích hình chữ nhật là :" + rectangle.showRectangularArea() + "<br>");
+    document.write("Chu vi hình chữ nhật là :" + rectangle.showRectanglePerimeter());
+
+    rectangle.drawRectangle();
+
+
+</script>
+</html>
+
